@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BadTrip: Creepypasta & Bad Tripp Edition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#07000e">
+  <style>
+    :root {
+      --bg: #07000e;
+      --card-bg: #110222;
+      --surface: #1a0433;
+      --surface-bright: #27064d;
+      --border: #420f78;
+      --text: #f3e8ff;
+      --text-muted: #a782d8;
+      --neon-cyan: #00ffff;
+      --neon-magenta: #ff007f;
+      --neon-lime: #39ff14;
+      --neon-yellow: #ffe600;
+      --neon-purple: #b026ff;
+      --curse-red: #ff1744;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+      height: 100vh;
+      height: 100dvh;
+      max-height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding-top: var(--safe-top);
+      padding-bottom: var(--safe-bottom);
+      background-image: radial-gradient(circle at 50% 15%, rgba(176, 38, 255, 0.18), transparent 75%);
+    }
+
+    /* iOS App Header */
+    header {
+      padding: 6px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0a0117;
+      border-bottom: 1.5px solid var(--border);
+      flex-shrink: 0;
+      z-index: 20;
+    }
+
+    .brand-title {
+      font-size: 1.02rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      color: var(--neon-cyan);
+      text-shadow: -1.5px 0px 0px var(--neon-magenta), 1.5px 0px 0px var(--neon-cyan);
+    }
+
+    .brand-sub {
+      font-size: 0.6rem;
+      color: var(--curse-red);
+      font-weight: 800;
+      display: block;
+      letter-spacing: 0.5px;
+    }
+
+    .header-pills {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .pill {
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 3px 6px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .pill-spores { color: var(--neon-yellow); }
+    .pill-caps { color: var(--neon-cyan); }
+
+    .god-toggle {
+      cursor: pointer;
+      background: #2b001a;
+      color: #ff3399;
+      border: 1.5px solid var(--neon-magenta);
+      font-size: 0.66rem;
+      font-weight: 900;
+      padding: 3px 6px;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+    }
+    .god-toggle.active {
+      background: var(--neon-magenta);
+      color: #fff;
+      box-shadow: 0 0 10px var(--neon-magenta);
+    }
+
+    /* Card Containers */
+    .trip-box {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: -2px -1.5px 0px var(--neon-magenta), 2px 1.5px 0px var(--neon-cyan);
+    }
+
+    .trip-box.badtripp-glow {
+      box-shadow: -2px -2px 8px var(--curse-red), 2px 2px 8px #fff;
+      border-color: var(--curse-red);
+    }
+
+    /* Avatar & Inverted Bad Tripp Form */
+    .avatar-frame {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius);
+      background: radial-gradient(circle at center, #23083e 0%, #080112 100%);
+      border: 1.5px solid var(--neon-cyan);
+      box-shadow: -1.5px -1.5px 0px var(--neon-magenta), 1.5px 1.5px 0px var(--neon-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .avatar-frame.is-badtripp {
+      border: 1.5px solid var(--curse-red);
+      background: radial-gradient(circle at center, #3d0008 0%, #000 100%);
+      box-shadow: 0 0 10px var(--curse-red);
+    }
+
+    .avatar-frame.is-badtripp svg {
+      filter: invert(1) hue-rotate(180deg) drop-shadow(0 0 6px var(--curse-red));
+      animation: badTrippFlicker 0.18s infinite alternate;
+    }
+
+    @keyframes badTrippFlicker {
+      0% { transform: scale(1) translate(0, 0); opacity: 0.92; }
+      100% { transform: scale(1.04) translate(-0.5px, 0.5px); opacity: 1; }
+    }
+
+    /* Badges */
+    .type-badge {
+      font-size: 0.6rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: rgba(176, 38, 255, 0.2);
+      border: 1px solid var(--neon-purple);
+      color: var(--neon-cyan);
+    }
+
+    .badge-badtripp {
+      font-size: 0.6rem;
+      font-weight: 900;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: #40000a;
+      border: 1px solid var(--curse-red);
+      color: #fff;
+      animation: pulseCurse 1.2s infinite alternate;
+    }
+
+    @keyframes pulseCurse {
+      0% { box-shadow: 0 0 3px var(--curse-red); }
+      100% { box-shadow: 0 0 8px var(--curse-red); }
+    }
+
+    /* Views */
+    #app {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .view {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+      padding: 8px 10px;
+      gap: 8px;
+    }
+
+    .view.active {
+      display: flex;
+    }
+
+    /* Battle Arena Layout */
+    .battle-card {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .fighter-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .fighter-row.enemy {
+      justify-content: flex-end;
+    }
+
+    .fighter-details {
+      flex: 1;
+      max-width: 240px;
+    }
+
+    .name-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .creature-title {
+      font-weight: 900;
+      font-size: 0.88rem;
+    }
+
+    .creature-lvl {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .bar-container {
+      background: #080014;
+      border: 1px solid #360f61;
+      border-radius: 999px;
+      height: 8px;
+      overflow: hidden;
+      margin-bottom: 2px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 100%;
+      transition: width 0.25s ease;
+    }
+
+    .hp-green { background: linear-gradient(90deg, #39ff14, #00ffaa); }
+    .hp-yellow { background: linear-gradient(90deg, #ffe600, #ff8800); }
+    .hp-red { background: linear-gradient(90deg, #ff0055, #99002b); }
+
+    .xp-bar {
+      height: 3.5px;
+      margin-top: 2px;
+    }
+
+    .xp-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    .sub-stats {
+      font-size: 0.65rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    /* AP Pip Bar */
+    .ap-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 255, 255, 0.08);
+      border: 1px solid rgba(0, 255, 255, 0.25);
+      border-radius: 6px;
+      padding: 3px 6px;
+      margin-top: 3px;
+    }
+
+    .ap-label {
+      font-size: 0.64rem;
+      font-weight: 900;
+      color: var(--neon-cyan);
+    }
+
+    .ap-pips {
+      display: flex;
+      gap: 3px;
+    }
+
+    .ap-pip {
+      width: 14px;
+      height: 7px;
+      border-radius: 2px;
+      background: #17042c;
+      border: 1px solid #4a158a;
+      transition: all 0.2s ease;
+    }
+
+    .ap-pip.active {
+      background: var(--neon-cyan);
+      border-color: #fff;
+      box-shadow: 0 0 6px var(--neon-cyan);
+    }
+
+    /* Battle Log */
+    .battle-log {
+      height: 62px;
+      overflow-y: auto;
+      font-size: 0.68rem;
+      line-height: 1.3;
+      background: #080014;
+      border: 1px solid #360f61;
+      border-radius: 6px;
+      padding: 6px;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 2px;
+    }
+
+    /* Moves & Commands */
+    .moves-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .move-btn {
+      padding: 8px 6px;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      background: #190533;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      box-shadow: -1.5px -1.5px 0px var(--neon-magenta), 1.5px 1.5px 0px var(--neon-cyan);
+    }
+
+    .move-btn:active:not(:disabled) {
+      transform: scale(0.97);
+      background: #290852;
+    }
+
+    .move-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .move-name {
+      font-weight: 900;
+      font-size: 0.74rem;
+      color: #fff;
+    }
+
+    .move-meta {
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .commands-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      margin-top: 6px;
+    }
+
+    /* Universal Buttons */
+    .btn {
+      appearance: none;
+      background: var(--surface-bright);
+      color: #fff;
+      border: 1.5px solid var(--border);
+      padding: 8px 6px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      box-shadow: -1.5px -1.5px 0px var(--neon-magenta), 1.5px 1.5px 0px var(--neon-cyan);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: scale(0.96);
+    }
+
+    .btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .btn-cyan { background: linear-gradient(135deg, #00ffff 0%, #0088cc 100%); color: #000; font-weight: 900; border-color: var(--neon-cyan); }
+    .btn-pink { background: linear-gradient(135deg, #ff007f 0%, #a00050 100%); color: #fff; border-color: var(--neon-magenta); }
+    .btn-yellow { background: linear-gradient(135deg, #ffe600 0%, #cc8800 100%); color: #000; font-weight: 900; border-color: var(--neon-yellow); }
+    .btn-curse { background: linear-gradient(135deg, #ff1744 0%, #7f0015 100%); color: #fff; font-weight: 900; border-color: #ff1744; }
+    .btn-sm { padding: 5px 8px; font-size: 0.66rem; }
+
+    /* Lists */
+    .item-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .creature-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 6px 8px;
+      box-shadow: -1.5px -1.5px 0px var(--neon-magenta), 1.5px 1.5px 0px var(--neon-cyan);
+    }
+
+    .creature-thumb {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+
+    /* Bottom Navigation Tab Bar */
+    nav.tab-bar {
+      background: #080014;
+      border-top: 1.5px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      padding: 4px 1px calc(var(--safe-bottom) + 2px);
+      flex-shrink: 0;
+      z-index: 30;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 3px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.6rem;
+      font-weight: 900;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      color: var(--neon-cyan);
+    }
+
+    .tab-btn.active span:last-child {
+      border-bottom: 2px solid var(--neon-cyan);
+      padding-bottom: 1px;
+    }
+
+    /* Modal / Popups */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 0, 7, 0.88);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      z-index: 100;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #15032a;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      max-width: 320px;
+      width: 100%;
+      text-align: center;
+      box-shadow: -3px -3px 0px var(--neon-magenta), 3px 3px 0px var(--neon-cyan);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toast {
+      position: fixed;
+      top: calc(var(--safe-top) + 48px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: #200540;
+      border: 1.5px solid var(--neon-cyan);
+      box-shadow: -2px -2px 0px var(--neon-magenta), 2px 2px 0px var(--neon-cyan);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      opacity: 0;
+      transition: all 0.25s ease;
+      z-index: 200;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Animations */
+    @keyframes hitWarp {
+      0% { transform: scale(1); filter: none; }
+      25% { transform: scale(1.12) rotate(-5deg); filter: hue-rotate(90deg) invert(0.6); }
+      50% { transform: scale(0.88) rotate(5deg); filter: hue-rotate(180deg) invert(1); }
+      75% { transform: scale(1.04) rotate(-2deg); filter: hue-rotate(270deg); }
+      100% { transform: scale(1); filter: none; }
+    }
+
+    .shake {
+      animation: hitWarp 0.38s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="toast" class="toast">Notification</div>
+
+  <!-- iOS Header -->
+  <header>
+    <div>
+      <div class="brand-title">BADTRIP</div>
+      <span class="brand-sub">☠️ BAD TRIPP EDITION ☠️</span>
+    </div>
+    <div class="header-pills">
+      <div class="god-toggle" id="godBtn" title="God Mode Toggle">⚡ EGO DEATH</div>
+      <div class="pill pill-spores">
+        <span>Spores:</span>
+        <strong id="sporesCount">200</strong>
+      </div>
+      <div class="pill pill-caps">
+        <span>Caps:</span>
+        <strong id="capsCount">6</strong>
+      </div>
+    </div>
+  </header>
+
+  <!-- Views Wrapper -->
+  <main id="app">
+
+    <!-- 1. BATTLE VIEW -->
+    <section id="viewBattle" class="view active">
+      <div class="trip-box battle-card" id="battleArenaCard">
+        <!-- Wild Enemy -->
+        <div class="fighter-row enemy">
+          <div class="fighter-details">
+            <div class="name-row">
+              <span class="creature-title" id="enemyName" style="color:var(--neon-magenta);">Wild Mushmellow</span>
+              <span class="creature-lvl" id="enemyLvl">Lv. 3</span>
+            </div>
+            <div class="bar-container">
+              <div class="bar-fill hp-green" id="enemyHpBar" style="width: 100%;"></div>
+            </div>
+            <div class="sub-stats">
+              <div style="display:flex; gap:3px;" id="enemyBadgeGroup">
+                <span class="type-badge" id="enemyType">Fungal</span>
+              </div>
+              <span id="enemyHpText">28 / 28</span>
+            </div>
+          </div>
+          <div class="avatar-frame" id="enemyAvatar"></div>
+        </div>
+
+        <!-- Player Active Battler -->
+        <div class="fighter-row">
+          <div class="avatar-frame" id="playerAvatar"></div>
+          <div class="fighter-details">
+            <div class="name-row">
+              <span class="creature-title" id="playerName" style="color:var(--neon-cyan);">Tripmunk</span>
+              <span class="creature-lvl" id="playerLvl">Lv. 5</span>
+            </div>
+            <div class="bar-container">
+              <div class="bar-fill hp-green" id="playerHpBar" style="width: 100%;"></div>
+            </div>
+            <div class="sub-stats">
+              <div style="display:flex; gap:3px;" id="playerBadgeGroup">
+                <span class="type-badge" id="playerType">Psyche</span>
+              </div>
+              <span id="playerHpText">36 / 36</span>
+            </div>
+            <div class="bar-container xp-bar">
+              <div class="xp-fill" id="playerXpBar" style="width: 0%;"></div>
+            </div>
+            <!-- AP Action Combo Pips -->
+            <div class="ap-wrapper">
+              <span class="ap-label">TRIP COMBO (AP)</span>
+              <div class="ap-pips" id="apPips"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Combat Feed -->
+        <div class="battle-log" id="battleLog">
+          <div>The walls are breathing. Strike up to 3 times per turn before retaliation!</div>
+        </div>
+      </div>
+
+      <!-- Action Pad -->
+      <div class="trip-box" style="padding: 8px;">
+        <div class="moves-grid" id="movesContainer"></div>
+
+        <div class="commands-row">
+          <button class="btn btn-cyan btn-sm" id="btnTrap">Trap</button>
+          <button class="btn btn-yellow btn-sm" id="btnPass">End Turn</button>
+          <button class="btn btn-pink btn-sm" id="btnSwapModal">Swap</button>
+          <button class="btn btn-sm" id="btnScout">Scout</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. TRIP DEN (Gym Leader / Passive Spores Generator) -->
+    <section id="viewDen" class="view">
+      <div class="trip-box" style="padding: 10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <strong style="font-size:0.95rem; color:var(--neon-cyan); font-weight:900;">TRIP DEN HEADQUARTERS</strong>
+            <div style="font-size:0.68rem; color:var(--text-muted);">Station trippers to harvest psychoactive spores passively.</div>
+          </div>
+          <button class="btn btn-yellow btn-sm" id="btnCollectVault">Harvest</button>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:6px; margin: 8px 0;">
+          <div style="background:#090017; border:1px solid var(--border); border-radius:6px; padding:6px; text-align:center;">
+            <div id="denRankText" style="font-size:0.95rem; font-weight:900; color:var(--neon-cyan);">Tier 1</div>
+            <div style="font-size:0.62rem; color:var(--text-muted); font-weight:700;">DEN TIER</div>
+          </div>
+          <div style="background:#090017; border:1px solid var(--border); border-radius:6px; padding:6px; text-align:center;">
+            <div id="denIncomeText" style="font-size:0.95rem; font-weight:900; color:var(--neon-yellow);">+6/sec</div>
+            <div style="font-size:0.62rem; color:var(--text-muted); font-weight:700;">STREAM</div>
+          </div>
+          <div style="background:#090017; border:1px solid var(--border); border-radius:6px; padding:6px; text-align:center;">
+            <div id="denVaultText" style="font-size:0.95rem; font-weight:900; color:var(--neon-lime);">0</div>
+            <div style="font-size:0.62rem; color:var(--text-muted); font-weight:700;">VAULT</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:6px;">
+          <button class="btn btn-cyan btn-sm" style="flex:1;" id="btnUpgradeDen">Expand Den (120 Spores)</button>
+          <button class="btn btn-curse btn-sm" style="flex:1;" id="btnChallenger">☠️ Apex Challenger</button>
+        </div>
+      </div>
+
+      <div class="trip-box" style="padding: 10px;">
+        <strong style="font-size:0.82rem; text-transform:uppercase; color:var(--neon-cyan);">Stationed Shamans</strong>
+        <div class="item-list" id="denTrainersList" style="margin-top:6px;"></div>
+      </div>
+    </section>
+
+    <!-- 3. TEAM POUCH VIEW -->
+    <section id="viewTeam" class="view">
+      <div class="trip-box" style="padding:10px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <strong style="font-size:0.88rem; text-transform:uppercase; color:var(--neon-cyan);">Active Pouch (Max 6)</strong>
+          <div style="font-size:0.68rem; color:var(--text-muted);">Manage your hallucinatory monsters</div>
+        </div>
+        <button class="btn btn-cyan btn-sm" id="btnDetox">Tea Detox (Free)</button>
+      </div>
+      <div class="item-list" id="teamList"></div>
+    </section>
+
+    <!-- 4. ENCYCLOPEDIA (DEX 60 + BAD TRIPP VARIANTS) -->
+    <section id="viewDex" class="view">
+      <div class="trip-box" style="padding:10px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <strong style="font-size:0.9rem; text-transform:uppercase; color:var(--neon-cyan);">Psychic Almanac (60 / 60)</strong>
+          <div style="font-size:0.66rem; color:var(--text-muted);">20 Lines • 3 Evolution Stages • Bad Tripp Shinies</div>
+        </div>
+        <button class="btn btn-curse btn-sm" id="btnToggleDexView">Show Bad Tripp</button>
+      </div>
+      <div class="item-list" id="dexList"></div>
+    </section>
+
+    <!-- 5. MANUAL VIEW -->
+    <section id="viewManual" class="view">
+      <div class="trip-box" style="padding:10px;">
+        <strong style="font-size:0.95rem; color:var(--neon-cyan); font-weight:900;">TRIPPER'S SURVIVAL GUIDE</strong>
+        <div style="font-size:0.68rem; color:var(--text-muted);">Mastering the Bad Tripp Edition.</div>
+      </div>
+
+      <div class="item-list">
+        <div class="trip-box" style="padding:8px;">
+          <strong style="color:var(--curse-red); font-size:0.8rem;">☠️ "BAD TRIPP" SHINIES (CORRUPTED INVERTED FORMS)</strong>
+          <p style="font-size:0.7rem; color:var(--text-muted); margin-top:3px; line-height:1.35;">
+            Wild creatures have a <strong>15% chance</strong> to appear as inverted, corrupted <strong>Bad Tripp</strong> variants. They sport inverted color palettes, cursed red glows, <strong>+35% boosted stats</strong>, and access to the life-draining signature move: <strong>"Creepypasta Void"</strong>!
+          </p>
+        </div>
+
+        <div class="trip-box" style="padding:8px;">
+          <strong style="color:var(--neon-cyan); font-size:0.8rem;">🌀 3-ACTION POINT COMBOS</strong>
+          <p style="font-size:0.7rem; color:var(--text-muted); margin-top:3px; line-height:1.35;">
+            Every turn begins with <strong>3 AP</strong>. Every move you tap executes instantaneously. You can stack 3 strikes in sequence, heal, and buff in a single turn before ending your turn.
+          </p>
+        </div>
+
+        <div class="trip-box" style="padding:8px;">
+          <strong style="color:var(--neon-magenta); font-size:0.8rem;">⚡ EGO DEATH (GOD MODE)</strong>
+          <p style="font-size:0.7rem; color:var(--text-muted); margin-top:3px; line-height:1.35;">
+            Tap <strong>⚡ EGO DEATH</strong> in header:<br>
+            • Infinite AP & Mind-Melt 9,999 1-Hit KOs<br>
+            • Complete damage immunity & 100% Trap rate<br>
+            • Infinite Spores & Guaranteed Bad Tripp Shiny spawns
+          </p>
+        </div>
+
+        <div class="trip-box" style="padding:8px;">
+          <strong style="color:var(--neon-lime); font-size:0.8rem;">🍄 PSYCHOACTIVE TYPE MULTIPLIERS</strong>
+          <p style="font-size:0.7rem; color:var(--text-muted); margin-top:3px; line-height:1.35;">
+            • <strong>Psyche</strong> dissolves <strong>Fungal</strong> (1.5x)<br>
+            • <strong>Fungal</strong> rots <strong>Static</strong> (1.5x)<br>
+            • <strong>Static</strong> zaps <strong>Ether</strong> (1.5x)<br>
+            • <strong>Ether</strong> swallows <strong>Delirium</strong> (1.5x)<br>
+            • <strong>Delirium</strong> confounds <strong>Psyche & Fungal</strong> (1.5x)
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="tab-bar">
+    <button class="tab-btn active" data-tab="viewBattle">
+      <span style="font-size:1rem;">🌀</span>
+      <span>BATTLE</span>
+    </button>
+    <button class="tab-btn" data-tab="viewDen">
+      <span style="font-size:1rem;">🍄</span>
+      <span>TRIP DEN</span>
+    </button>
+    <button class="tab-btn" data-tab="viewTeam">
+      <span style="font-size:1rem;">👁️</span>
+      <span>POUCH</span>
+    </button>
+    <button class="tab-btn" data-tab="viewDex">
+      <span style="font-size:1rem;">📖</span>
+      <span>DEX (60)</span>
+    </button>
+    <button class="tab-btn" data-tab="viewManual">
+      <span style="font-size:1rem;">📜</span>
+      <span>MANUAL</span>
+    </button>
+  </nav>
+
+  <!-- EVOLUTION MODAL -->
+  <div class="modal-overlay" id="evoModal">
+    <div class="modal-card">
+      <h2 id="evoTitle" style="color:var(--neon-cyan); font-size:1.05rem; font-weight:900;">ASCENSION UNLOCKED!</h2>
+      <div class="avatar-frame" id="evoAvatar" style="margin: 0 auto; width:80px; height:80px;"></div>
+      <p id="evoDesc" style="font-size:0.78rem; color:var(--text-muted);">Your entity's third eye has cracked open into higher dimensions!</p>
+      <button class="btn btn-cyan" id="btnConfirmEvo">TRIGGER ASCENSION</button>
+    </div>
+  </div>
+
+  <!-- SWAP MODAL -->
+  <div class="modal-overlay" id="swapModal">
+    <div class="modal-card" style="max-height:80vh; overflow-y:auto;">
+      <h2 style="font-size:0.95rem; font-weight:900; color:var(--neon-cyan);">SUMMON BATTLE ENTITY</h2>
+      <div id="swapChoices" style="display:flex; flex-direction:column; gap:6px;"></div>
+      <button class="btn btn-sm" id="btnCloseSwap" style="margin-top:4px;">Close</button>
+    </div>
+  </div>
+
+  <script>
+    /* =====================================================================
+       RETRO WEB AUDIO SYNTHESIZER
+       ===================================================================== */
+    const SoundFx = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) this.ctx = new AudioContext();
+        }
+      },
+      play(freq, type = 'sine', duration = 0.14, gainVal = 0.1) {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          if (this.ctx.state === 'suspended') this.ctx.resume();
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+          gain.gain.setValueAtTime(gainVal, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + duration);
+        } catch(e) {}
+      },
+      hit() {
+        this.play(260, 'sawtooth', 0.12, 0.18);
+        setTimeout(() => this.play(130, 'square', 0.12, 0.18), 50);
+      },
+      crit() {
+        this.play(440, 'square', 0.2, 0.25);
+        setTimeout(() => this.play(220, 'sawtooth', 0.2, 0.3), 70);
+      },
+      badTrippScream() {
+        this.play(880, 'sawtooth', 0.3, 0.25);
+        setTimeout(() => this.play(110, 'square', 0.4, 0.35), 60);
+      },
+      evolve() {
+        [220, 293, 369, 440, 587].forEach((f, i) => {
+          setTimeout(() => this.play(f, 'triangle', 0.16, 0.15), i * 70);
+        });
+      },
+      caught() {
+        this.play(392, 'triangle', 0.1, 0.18);
+        setTimeout(() => this.play(587, 'triangle', 0.22, 0.22), 90);
+      }
+    };
+
+    /* =====================================================================
+       16x16 PIXEL MATRICES
+       ===================================================================== */
+    const PIXEL_MATRICES = {
+      mush: [
+        [0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0],
+        [0,0,0,1,1,1,2,1,1,1,1,1,0,0,0,0],
+        [0,0,1,1,2,1,1,1,2,1,1,1,1,0,0,0],
+        [0,1,1,1,1,1,1,1,1,1,1,2,1,1,0,0],
+        [1,1,2,1,1,2,1,1,1,2,1,1,1,1,1,0],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+        [0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0],
+        [0,0,0,0,0,2,2,2,2,2,0,0,0,0,0,0],
+        [0,0,0,0,0,2,3,2,3,2,0,0,0,0,0,0],
+        [0,0,0,0,0,2,2,2,2,2,0,0,0,0,0,0],
+        [0,0,0,0,0,2,2,2,2,2,0,0,0,0,0,0],
+        [0,0,0,0,2,2,2,2,2,2,2,0,0,0,0,0],
+        [0,0,0,2,2,2,2,2,2,2,2,2,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+      ],
+      eye: [
+        [0,0,0,0,0,0,3,3,3,3,0,0,0,0,0,0],
+        [0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0],
+        [0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+        [0,1,1,1,1,2,2,2,2,1,1,1,1,1,1,0],
+        [1,1,1,1,2,2,3,3,2,2,1,1,1,1,1,1],
+        [1,1,1,1,2,3,3,3,3,2,1,1,1,1,1,1],
+        [1,1,1,1,2,3,3,3,3,2,1,1,1,1,1,1],
+        [1,1,1,1,2,2,3,3,2,2,1,1,1,1,1,1],
+        [0,1,1,1,1,2,2,2,2,1,1,1,1,1,1,0],
+        [0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+        [0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0],
+        [0,0,0,0,0,3,0,0,0,3,0,0,0,0,0,0],
+        [0,0,0,0,3,0,0,0,0,0,3,0,0,0,0,0],
+        [0,0,0,3,0,0,0,0,0,0,0,3,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+      ],
+      demon: [
+        [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3],
+        [3,3,0,0,0,0,0,0,0,0,0,0,0,0,3,3],
+        [0,3,3,0,0,1,1,1,1,1,1,0,0,3,3,0],
+        [0,0,3,1,1,1,1,1,1,1,1,1,1,3,0,0],
+        [0,0,1,1,2,2,1,1,1,1,2,2,1,1,0,0],
+        [0,1,1,1,2,3,1,1,1,1,3,2,1,1,1,0],
+        [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+        [0,0,1,1,1,3,3,3,3,3,3,1,1,1,0,0],
+        [0,0,0,1,1,1,3,1,1,3,1,1,1,0,0,0],
+        [0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+        [0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0],
+        [1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1],
+        [1,0,0,0,1,1,0,0,0,0,1,1,0,0,0,1],
+        [0,0,0,1,1,1,0,0,0,0,1,1,1,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+      ],
+      beast: [
+        [0,0,3,0,0,0,0,0,0,0,0,0,3,0,0,0],
+        [0,3,3,0,0,1,1,1,1,1,0,0,3,3,0,0],
+        [0,3,0,0,1,1,1,1,1,1,1,0,0,3,0,0],
+        [0,0,0,1,1,2,1,1,1,2,1,1,0,0,0,0],
+        [0,0,1,1,1,3,1,1,1,3,1,1,1,0,0,0],
+        [0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0],
+        [0,0,1,1,3,3,3,3,3,3,3,1,1,0,0,0],
+        [0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0],
+        [0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0],
+        [0,1,1,0,1,1,1,1,1,1,1,0,1,1,0,0],
+        [1,1,0,0,1,1,1,1,1,1,1,0,0,1,1,0],
+        [1,0,0,0,1,1,0,0,0,1,1,0,0,0,1,0],
+        [0,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0],
+        [0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+      ],
+      slug: [
+        [0,0,0,0,0,0,0,0,3,0,3,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,3,0,3,0,0,0,0,0],
+        [0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0],
+        [0,0,0,0,0,0,1,1,2,1,2,1,1,0,0,0],
+        [0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0],
+        [0,0,0,0,1,1,1,1,1,3,1,1,1,0,0,0],
+        [0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0],
+        [0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0],
+        [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+      ],
+      orb: [
+        [0,0,0,0,0,3,3,3,3,3,3,0,0,0,0,0],
+        [0,0,0,3,3,1,1,1,1,1,1,3,3,0,0,0],
+        [0,0,3,1,1,1,2,2,2,2,1,1,1,3,0,0],
+        [0,3,1,1,2,2,2,2,2,2,2,2,1,1,3,0],
+        [0,3,1,2,2,2,3,3,3,3,2,2,2,1,3,0],
+        [3,1,1,2,2,3,3,3,3,3,3,2,2,1,1,3],
+        [3,1,2,2,3,3,1,1,1,1,3,3,2,2,1,3],
+        [3,1,2,2,3,3,1,2,2,1,3,3,2,2,1,3],
+        [3,1,2,2,3,3,1,1,1,1,3,3,2,2,1,3],
+        [3,1,1,2,2,3,3,3,3,3,3,2,2,1,1,3],
+        [0,3,1,2,2,2,3,3,3,3,2,2,2,1,3,0],
+        [0,3,1,1,2,2,2,2,2,2,2,2,1,1,3,0],
+        [0,0,3,1,1,1,2,2,2,2,1,1,1,3,0,0],
+        [0,0,0,3,3,1,1,1,1,1,1,3,3,0,0,0],
+        [0,0,0,0,0,3,3,3,3,3,3,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+      ]
+    };
+
+    function renderVoxelSvg(matrix, isPlayer, isBadTripp) {
+      const px = 4.2;
+      let c1 = isPlayer ? '#00ffff' : '#ff007f';
+      let c2 = isPlayer ? '#ffffff' : '#ffe600';
+      let c3 = isPlayer ? '#b026ff' : '#39ff14';
+
+      if (isBadTripp) {
+        c1 = '#ff1744';
+        c2 = '#000000';
+        c3 = '#ffffff';
+      }
+
+      let rects = '';
+      for (let y = 0; y < 16; y++) {
+        for (let x = 0; x < 16; x++) {
+          const val = matrix[y] ? matrix[y][x] : 0;
+          if (val === 1) {
+            rects += `<rect x="${x * px + 8}" y="${y * px + 8}" width="${px - 0.4}" height="${px - 0.4}" fill="${c1}" />`;
+          } else if (val === 2) {
+            rects += `<rect x="${x * px + 8}" y="${y * px + 8}" width="${px - 0.4}" height="${px - 0.4}" fill="${c2}" />`;
+          } else if (val === 3) {
+            rects += `<rect x="${x * px + 8}" y="${y * px + 8}" width="${px - 0.4}" height="${px - 0.4}" fill="${c3}" />`;
+          }
+        }
+      }
+
+      const shadow = isBadTripp ? 'drop-shadow(0 0 6px #ff1744)' : 'drop-shadow(-2px 0 0 #ff007f) drop-shadow(2px 0 0 #00ffff)';
+      return `
+        <svg viewBox="0 0 84 84" style="image-rendering: pixelated; width:100%; height:100%;">
+          <g filter="${shadow}">
+            ${rects}
+          </g>
+        </svg>
+      `;
+    }
+
+    function getCreatureIcon(iconKey, isPlayer = false, isBadTripp = false) {
+      const mat = PIXEL_MATRICES[iconKey] || PIXEL_MATRICES.mush;
+      return renderVoxelSvg(mat, isPlayer, isBadTripp);
+    }
+
+    /* =====================================================================
+       MOVES ARSENAL (Includes Bad Tripp Signature Move)
+       ===================================================================== */
+    const MOVE_DEX = {
+      mindMelt: { name: "Mind Melt", power: 25, type: "Psyche", effect: "bleed" },
+      timeDilation: { name: "Time Dilation", power: 0, type: "Psyche", effect: "buffSpd" },
+      egoShatter: { name: "Ego Shatter", power: 34, type: "Psyche", effect: "crit" },
+      nirvanaBeam: { name: "Nirvana Beam", power: 50, type: "Psyche", effect: "none" },
+
+      sporeHaze: { name: "Spore Haze", power: 24, type: "Fungal", effect: "bleed" },
+      myceliumLash: { name: "Mycelium Lash", power: 32, type: "Fungal", effect: "none" },
+      teaBrew: { name: "Magic Tea Brew", power: 0, type: "Fungal", effect: "heal" },
+      psilocybinStorm: { name: "Psilocybin Storm", power: 48, type: "Fungal", effect: "none" },
+
+      synapseShock: { name: "Synapse Shock", power: 25, type: "Static", effect: "flinch" },
+      rainbowStatic: { name: "Rainbow Static", power: 32, type: "Static", effect: "crit" },
+      overclockNerve: { name: "Nerve Overclock", power: 0, type: "Static", effect: "buffAtk" },
+      cathodeFry: { name: "Cathode Fry", power: 48, type: "Static", effect: "none" },
+
+      hallucinate: { name: "Hallucinate", power: 24, type: "Ether", effect: "bleed" },
+      astralTear: { name: "Astral Tear", power: 34, type: "Ether", effect: "flinch" },
+      cosmicMirror: { name: "Cosmic Mirror", power: 0, type: "Ether", effect: "buffDef" },
+      voidSwallow: { name: "Void Swallow", power: 52, type: "Ether", effect: "none" },
+
+      badTripHowl: { name: "Bad Trip Howl", power: 26, type: "Delirium", effect: "crit" },
+      paranoiaSpike: { name: "Paranoia Spike", power: 35, type: "Delirium", effect: "bleed" },
+      sensoryOverload: { name: "Sensory Blitz", power: 0, type: "Delirium", effect: "buffAtk" },
+      nightmareFractal: { name: "Fractal Terror", power: 52, type: "Delirium", effect: "none" },
+
+      // Exclusive Bad Tripp Signature Move
+      creepypastaVoid: { name: "☠️ Creepypasta Void", power: 60, type: "Delirium", effect: "drain" }
+    };
+
+    /* =====================================================================
+       COMPLETE 60 CREATURE COMPENDIUM (20 Lines x 3 Stages)
+       ===================================================================== */
+    const CREATURE_ROSTER = [
+      // 1. Shroom Line
+      { id: 1, name: "Mushmellow", icon: "mush", type: "Fungal", stage: 1, evoLevel: 10, evolvesTo: 2, hp: 48, atk: 15, def: 12, spd: 8, moves: ["sporeHaze", "teaBrew", "myceliumLash", "mindMelt"] },
+      { id: 2, name: "Psilobeast", icon: "mush", type: "Fungal", stage: 2, evoLevel: 22, evolvesTo: 3, hp: 74, atk: 25, def: 18, spd: 13, moves: ["sporeHaze", "teaBrew", "myceliumLash", "psilocybinStorm"] },
+      { id: 3, name: "Omni-Amanita", icon: "mush", type: "Fungal", stage: 3, evoLevel: null, evolvesTo: null, hp: 122, atk: 39, def: 28, spd: 20, moves: ["sporeHaze", "teaBrew", "psilocybinStorm", "egoShatter"] },
+
+      // 2. Psyche Eye Line
+      { id: 4, name: "Tripmunk", icon: "eye", type: "Psyche", stage: 1, evoLevel: 9, evolvesTo: 5, hp: 42, atk: 17, def: 9, spd: 18, moves: ["mindMelt", "timeDilation", "egoShatter", "synapseShock"] },
+      { id: 5, name: "Pupilfiend", icon: "eye", type: "Psyche", stage: 2, evoLevel: 21, evolvesTo: 6, hp: 68, atk: 27, def: 15, spd: 28, moves: ["mindMelt", "timeDilation", "egoShatter", "nirvanaBeam"] },
+      { id: 6, name: "Third Eye God", icon: "eye", type: "Psyche", stage: 3, evoLevel: null, evolvesTo: null, hp: 108, atk: 44, def: 24, spd: 42, moves: ["mindMelt", "timeDilation", "egoShatter", "nirvanaBeam"] },
+
+      // 3. Static Glitch Line
+      { id: 7, name: "Buzzer", icon: "demon", type: "Static", stage: 1, evoLevel: 10, evolvesTo: 8, hp: 44, atk: 16, def: 10, spd: 16, moves: ["synapseShock", "overclockNerve", "rainbowStatic", "mindMelt"] },
+      { id: 8, name: "Glitchcrawler", icon: "demon", type: "Static", stage: 2, evoLevel: 22, evolvesTo: 9, hp: 70, atk: 26, def: 16, spd: 24, moves: ["synapseShock", "overclockNerve", "rainbowStatic", "cathodeFry"] },
+      { id: 9, name: "Pixelpolter", icon: "demon", type: "Static", stage: 3, evoLevel: null, evolvesTo: null, hp: 112, atk: 42, def: 25, spd: 36, moves: ["synapseShock", "rainbowStatic", "overclockNerve", "cathodeFry"] },
+
+      // 4. Ether Jelly Line
+      { id: 10, name: "Gooze", icon: "orb", type: "Ether", stage: 1, evoLevel: 10, evolvesTo: 11, hp: 54, atk: 12, def: 16, spd: 7, moves: ["hallucinate", "cosmicMirror", "astralTear", "teaBrew"] },
+      { id: 11, name: "LSDemon", icon: "orb", type: "Ether", stage: 2, evoLevel: 23, evolvesTo: 12, hp: 86, atk: 20, def: 26, spd: 11, moves: ["hallucinate", "cosmicMirror", "astralTear", "voidSwallow"] },
+      { id: 12, name: "Nebula Maw", icon: "orb", type: "Ether", stage: 3, evoLevel: null, evolvesTo: null, hp: 136, atk: 32, def: 40, spd: 17, moves: ["hallucinate", "astralTear", "cosmicMirror", "voidSwallow"] },
+
+      // 5. Delirium Bat Line
+      { id: 13, name: "Freakrat", icon: "beast", type: "Delirium", stage: 1, evoLevel: 9, evolvesTo: 14, hp: 40, atk: 18, def: 8, spd: 19, moves: ["badTripHowl", "sensoryOverload", "paranoiaSpike", "mindMelt"] },
+      { id: 14, name: "Methgargoyle", icon: "beast", type: "Delirium", stage: 2, evoLevel: 21, evolvesTo: 15, hp: 65, atk: 29, def: 13, spd: 30, moves: ["badTripHowl", "sensoryOverload", "paranoiaSpike", "nightmareFractal"] },
+      { id: 15, name: "Paranoia King", icon: "beast", type: "Delirium", stage: 3, evoLevel: null, evolvesTo: null, hp: 104, atk: 46, def: 20, spd: 45, moves: ["badTripHowl", "paranoiaSpike", "sensoryOverload", "nightmareFractal"] },
+
+      // 6. Slug Mollusk Line
+      { id: 16, name: "Slimepuff", icon: "slug", type: "Fungal", stage: 1, evoLevel: 11, evolvesTo: 17, hp: 52, atk: 13, def: 15, spd: 6, moves: ["sporeHaze", "teaBrew", "myceliumLash", "cosmicMirror"] },
+      { id: 17, name: "Mucuslord", icon: "slug", type: "Fungal", stage: 2, evoLevel: 24, evolvesTo: 18, hp: 82, atk: 22, def: 25, spd: 9, moves: ["sporeHaze", "teaBrew", "myceliumLash", "psilocybinStorm"] },
+      { id: 18, name: "Bardo Leviathan", icon: "slug", type: "Fungal", stage: 3, evoLevel: null, evolvesTo: null, hp: 130, atk: 33, def: 39, spd: 14, moves: ["sporeHaze", "teaBrew", "psilocybinStorm", "voidSwallow"] },
+
+      // 7. Wormhole Line
+      { id: 19, name: "Wormy", icon: "orb", type: "Ether", stage: 1, evoLevel: 10, evolvesTo: 20, hp: 46, atk: 14, def: 12, spd: 14, moves: ["hallucinate", "astralTear", "timeDilation", "mindMelt"] },
+      { id: 20, name: "Twisted Coil", icon: "orb", type: "Ether", stage: 2, evoLevel: 22, evolvesTo: 21, hp: 72, atk: 24, def: 18, spd: 22, moves: ["hallucinate", "astralTear", "timeDilation", "voidSwallow"] },
+      { id: 21, name: "Chrono Ouroboros", icon: "orb", type: "Ether", stage: 3, evoLevel: null, evolvesTo: null, hp: 114, atk: 38, def: 28, spd: 34, moves: ["hallucinate", "astralTear", "timeDilation", "voidSwallow"] },
+
+      // 8. Sugar Candy Line
+      { id: 22, name: "Sugarblob", icon: "mush", type: "Psyche", stage: 1, evoLevel: 8, evolvesTo: 23, hp: 44, atk: 15, def: 11, spd: 12, moves: ["mindMelt", "teaBrew", "egoShatter", "sporeHaze"] },
+      { id: 23, name: "Meltdown", icon: "mush", type: "Psyche", stage: 2, evoLevel: 20, evolvesTo: 24, hp: 70, atk: 24, def: 18, spd: 18, moves: ["mindMelt", "teaBrew", "egoShatter", "nirvanaBeam"] },
+      { id: 24, name: "Euphoria Colossus", icon: "mush", type: "Psyche", stage: 3, evoLevel: null, evolvesTo: null, hp: 118, atk: 38, def: 30, spd: 26, moves: ["mindMelt", "teaBrew", "egoShatter", "nirvanaBeam"] },
+
+      // 9. TV Head Line
+      { id: 25, name: "Antennite", icon: "demon", type: "Static", stage: 1, evoLevel: 10, evolvesTo: 26, hp: 46, atk: 16, def: 11, spd: 13, moves: ["synapseShock", "rainbowStatic", "overclockNerve", "badTripHowl"] },
+      { id: 26, name: "Staticface", icon: "demon", type: "Static", stage: 2, evoLevel: 22, evolvesTo: 27, hp: 73, atk: 26, def: 17, spd: 20, moves: ["synapseShock", "rainbowStatic", "overclockNerve", "cathodeFry"] },
+      { id: 27, name: "Broadcast Overlord", icon: "demon", type: "Static", stage: 3, evoLevel: null, evolvesTo: null, hp: 116, atk: 41, def: 26, spd: 30, moves: ["synapseShock", "rainbowStatic", "overclockNerve", "cathodeFry"] },
+
+      // 10. Shadow Spider Line
+      { id: 28, name: "Spidermind", icon: "beast", type: "Delirium", stage: 1, evoLevel: 9, evolvesTo: 29, hp: 42, atk: 17, def: 9, spd: 17, moves: ["badTripHowl", "paranoiaSpike", "sensoryOverload", "mindMelt"] },
+      { id: 29, name: "Arachnofright", icon: "beast", type: "Delirium", stage: 2, evoLevel: 21, evolvesTo: 30, hp: 67, atk: 27, def: 14, spd: 27, moves: ["badTripHowl", "paranoiaSpike", "sensoryOverload", "nightmareFractal"] },
+      { id: 30, name: "Web of Madness", icon: "beast", type: "Delirium", stage: 3, evoLevel: null, evolvesTo: null, hp: 106, atk: 43, def: 22, spd: 41, moves: ["badTripHowl", "paranoiaSpike", "sensoryOverload", "nightmareFractal"] },
+
+      // 11. Acid Toad Line
+      { id: 31, name: "Polliwog", icon: "slug", type: "Fungal", stage: 1, evoLevel: 10, evolvesTo: 32, hp: 50, atk: 14, def: 13, spd: 10, moves: ["sporeHaze", "teaBrew", "myceliumLash", "paranoiaSpike"] },
+      { id: 32, name: "Bufo Bufo", icon: "slug", type: "Fungal", stage: 2, evoLevel: 23, evolvesTo: 33, hp: 78, atk: 23, def: 21, spd: 16, moves: ["sporeHaze", "teaBrew", "myceliumLash", "psilocybinStorm"] },
+      { id: 33, name: "5-MeO Sovereign", icon: "slug", type: "Fungal", stage: 3, evoLevel: null, evolvesTo: null, hp: 124, atk: 37, def: 33, spd: 24, moves: ["sporeHaze", "teaBrew", "psilocybinStorm", "egoShatter"] },
+
+      // 12. Fractal Moth Line
+      { id: 34, name: "Mothling", icon: "eye", type: "Psyche", stage: 1, evoLevel: 8, evolvesTo: 35, hp: 38, atk: 16, def: 8, spd: 20, moves: ["mindMelt", "timeDilation", "egoShatter", "rainbowStatic"] },
+      { id: 35, name: "Silkpsyche", icon: "eye", type: "Psyche", stage: 2, evoLevel: 20, evolvesTo: 36, hp: 62, atk: 25, def: 13, spd: 31, moves: ["mindMelt", "timeDilation", "egoShatter", "nirvanaBeam"] },
+      { id: 36, name: "Geometry Titan", icon: "eye", type: "Psyche", stage: 3, evoLevel: null, evolvesTo: null, hp: 96, atk: 40, def: 20, spd: 47, moves: ["mindMelt", "timeDilation", "egoShatter", "nirvanaBeam"] },
+
+      // 13. Clockwork Demon Line
+      { id: 37, name: "Gearimp", icon: "demon", type: "Delirium", stage: 1, evoLevel: 10, evolvesTo: 38, hp: 46, atk: 16, def: 12, spd: 11, moves: ["badTripHowl", "paranoiaSpike", "sensoryOverload", "synapseShock"] },
+      { id: 38, name: "Ticking Dread", icon: "demon", type: "Delirium", stage: 2, evoLevel: 22, evolvesTo: 39, hp: 74, atk: 26, def: 19, spd: 18, moves: ["badTripHowl", "paranoiaSpike", "sensoryOverload", "nightmareFractal"] },
+      { id: 39, name: "Clock of Mortality", icon: "demon", type: "Delirium", stage: 3, evoLevel: null, evolvesTo: null, hp: 116, atk: 42, def: 28, spd: 27, moves: ["badTripHowl", "paranoiaSpike", "sensoryOverload", "nightmareFractal"] },
+
+      // 14. Astral Jellyfish Line
+      { id: 40, name: "Floater", icon: "orb", type: "Ether", stage: 1, evoLevel: 9, evolvesTo: 41, hp: 44, atk: 15, def: 11, spd: 15, moves: ["hallucinate", "astralTear", "cosmicMirror", "synapseShock"] },
+      { id: 41, name: "Cosmozoa", icon: "orb", type: "Ether", stage: 2, evoLevel: 21, evolvesTo: 42, hp: 69, atk: 24, def: 17, spd: 23, moves: ["hallucinate", "astralTear", "cosmicMirror", "voidSwallow"] },
+      { id: 42, name: "Cosmic Medusa", icon: "orb", type: "Ether", stage: 3, evoLevel: null, evolvesTo: null, hp: 110, atk: 39, def: 27, spd: 35, moves: ["hallucinate", "astralTear", "cosmicMirror", "voidSwallow"] },
+
+      // 15. Neon Chameleon Line
+      { id: 43, name: "Chameleoid", icon: "beast", type: "Static", stage: 1, evoLevel: 10, evolvesTo: 44, hp: 45, atk: 15, def: 11, spd: 15, moves: ["synapseShock", "rainbowStatic", "overclockNerve", "hallucinate"] },
+      { id: 44, name: "Strobelizard", icon: "beast", type: "Static", stage: 2, evoLevel: 23, evolvesTo: 45, hp: 71, atk: 25, def: 17, spd: 24, moves: ["synapseShock", "rainbowStatic", "overclockNerve", "cathodeFry"] },
+      { id: 45, name: "Laser Reptilian", icon: "beast", type: "Static", stage: 3, evoLevel: null, evolvesTo: null, hp: 114, atk: 41, def: 26, spd: 37, moves: ["synapseShock", "rainbowStatic", "overclockNerve", "cathodeFry"] },
+
+      // 16. Black Hole Sprite Line
+      { id: 46, name: "Singularit", icon: "orb", type: "Ether", stage: 1, evoLevel: 10, evolvesTo: 47, hp: 48, atk: 16, def: 13, spd: 9, moves: ["hallucinate", "astralTear", "cosmicMirror", "mindMelt"] },
+      { id: 47, name: "Event Horizor", icon: "orb", type: "Ether", stage: 2, evoLevel: 23, evolvesTo: 48, hp: 76, atk: 26, def: 20, spd: 15, moves: ["hallucinate", "astralTear", "cosmicMirror", "voidSwallow"] },
+      { id: 48, name: "Total Abyss", icon: "orb", type: "Ether", stage: 3, evoLevel: null, evolvesTo: null, hp: 122, atk: 42, def: 31, spd: 23, moves: ["hallucinate", "astralTear", "cosmicMirror", "voidSwallow"] },
+
+      // 17. Hypno Serpent Line
+      { id: 49, name: "Spiralhead", icon: "slug", type: "Psyche", stage: 1, evoLevel: 9, evolvesTo: 50, hp: 43, atk: 16, def: 10, spd: 16, moves: ["mindMelt", "timeDilation", "egoShatter", "badTripHowl"] },
+      { id: 50, name: "Kundalini", icon: "slug", type: "Psyche", stage: 2, evoLevel: 22, evolvesTo: 51, hp: 69, atk: 26, def: 16, spd: 25, moves: ["mindMelt", "timeDilation", "egoShatter", "nirvanaBeam"] },
+      { id: 51, name: "Cosmic Seraph", icon: "slug", type: "Psyche", stage: 3, evoLevel: null, evolvesTo: null, hp: 110, atk: 42, def: 25, spd: 38, moves: ["mindMelt", "timeDilation", "egoShatter", "nirvanaBeam"] },
+
+      // 18. Mold Goblin Line
+      { id: 52, name: "Rotling", icon: "mush", type: "Fungal", stage: 1, evoLevel: 10, evolvesTo: 53, hp: 47, atk: 15, def: 12, spd: 11, moves: ["sporeHaze", "myceliumLash", "teaBrew", "badTripHowl"] },
+      { id: 53, name: "Moldfiend", icon: "mush", type: "Fungal", stage: 2, evoLevel: 22, evolvesTo: 54, hp: 73, atk: 25, def: 18, spd: 17, moves: ["sporeHaze", "myceliumLash", "teaBrew", "psilocybinStorm"] },
+      { id: 54, name: "Decomposition God", icon: "mush", type: "Fungal", stage: 3, evoLevel: null, evolvesTo: null, hp: 118, atk: 40, def: 29, spd: 26, moves: ["sporeHaze", "myceliumLash", "teaBrew", "psilocybinStorm"] },
+
+      // 19. Lucid Dreamer Line
+      { id: 55, name: "Snoozer", icon: "eye", type: "Ether", stage: 1, evoLevel: 10, evolvesTo: 56, hp: 46, atk: 15, def: 12, spd: 12, moves: ["hallucinate", "astralTear", "cosmicMirror", "teaBrew"] },
+      { id: 56, name: "Sleepwalker", icon: "eye", type: "Ether", stage: 2, evoLevel: 23, evolvesTo: 57, hp: 73, atk: 25, def: 19, spd: 19, moves: ["hallucinate", "astralTear", "cosmicMirror", "voidSwallow"] },
+      { id: 57, name: "Architect of Sleep", icon: "eye", type: "Ether", stage: 3, evoLevel: null, evolvesTo: null, hp: 118, atk: 41, def: 29, spd: 29, moves: ["hallucinate", "astralTear", "cosmicMirror", "voidSwallow"] },
+
+      // 20. Dimension Ripper Line
+      { id: 58, name: "Voidcub", icon: "demon", type: "Delirium", stage: 1, evoLevel: 11, evolvesTo: 59, hp: 45, atk: 18, def: 9, spd: 15, moves: ["badTripHowl", "paranoiaSpike", "sensoryOverload", "mindMelt"] },
+      { id: 59, name: "Riftslasher", icon: "demon", type: "Delirium", stage: 2, evoLevel: 24, evolvesTo: 60, hp: 72, atk: 29, def: 15, spd: 25, moves: ["badTripHowl", "paranoiaSpike", "sensoryOverload", "nightmareFractal"] },
+      { id: 60, name: "Apex Ego Shatterer", icon: "demon", type: "Delirium", stage: 3, evoLevel: null, evolvesTo: null, hp: 116, atk: 47, def: 24, spd: 39, moves: ["badTripHowl", "paranoiaSpike", "sensoryOverload", "nightmareFractal"] }
+    ];
+
+    /* =====================================================================
+       GAME STATE
+       ===================================================================== */
+    const State = {
+      spores: 200,
+      caps: 6,
+      party: [],
+      activeIdx: 0,
+      wildCreature: null,
+      isActing: false,
+      godMode: false,
+      forceBadTrippSpawn: false,
+      showBadTrippInDex: false,
+      playerApMax: 3,
+      playerApCurrent: 3,
+      pendingEvolution: null,
+      den: {
+        rank: 1,
+        vault: 0,
+        baseIncome: 6,
+        trainers: [
+          { name: "Baba Ram", title: "Microdoser", creature: "Mushmellow", level: 6, boost: 3 },
+          { name: "DJ Neon", title: "Rave Shaman", creature: "Tripmunk", level: 8, boost: 4 },
+          { name: "Oracle Liz", title: "Void Seer", creature: "Gooze", level: 11, boost: 6 }
+        ]
+      }
+    };
+
+    function showToast(msg) {
+      const el = document.getElementById("toast");
+      el.textContent = msg;
+      el.classList.add("show");
+      setTimeout(() => el.classList.remove("show"), 2000);
+    }
+
+    // Creature Factory with Bad Tripp Shiny Generator
+    function createCreature(speciesId, level = 5, forceBadTripp = false) {
+      const b = CREATURE_ROSTER.find(c => c.id === speciesId);
+      const isBadTripp = forceBadTripp || (Math.random() < 0.15); // 15% shiny rate
+      const statBonus = isBadTripp ? 1.35 : 1.0;
+      const scale = (1 + (level - 1) * 0.16) * statBonus;
+      const maxHp = Math.round(b.hp * scale);
+
+      const moves = [...b.moves];
+      if (isBadTripp && !moves.includes("creepypastaVoid")) {
+        moves[3] = "creepypastaVoid"; // Overwrite 4th move with cursed signature
+      }
+
+      return {
+        speciesId: b.id,
+        name: isBadTripp ? `Inverted ${b.name}` : b.name,
+        rawName: b.name,
+        type: b.type,
+        icon: b.icon,
+        isBadTripp: isBadTripp,
+        level: level,
+        xp: 0,
+        xpNext: level * 35,
+        maxHp: maxHp,
+        currentHp: maxHp,
+        atk: Math.round(b.atk * scale),
+        def: Math.round(b.def * scale),
+        spd: Math.round(b.spd * scale),
+        moves: moves,
+        stage: b.stage,
+        evoLevel: b.evoLevel,
+        evolvesTo: b.evolvesTo,
+        status: null,
+        atkStage: 0,
+        defStage: 0
+      };
+    }
+
+    function getPlayerCreature() {
+      return State.party[State.activeIdx];
+    }
+
+    function getMultiplier(atkType, defType) {
+      if (atkType === "Psyche" && defType === "Fungal") return 1.5;
+      if (atkType === "Fungal" && defType === "Static") return 1.5;
+      if (atkType === "Static" && defType === "Ether") return 1.5;
+      if (atkType === "Ether" && defType === "Delirium") return 1.5;
+      if (atkType === "Delirium" && (defType === "Psyche" || defType === "Fungal")) return 1.5;
+      if (atkType === defType) return 0.75;
+      return 1.0;
+    }
+
+    /* =====================================================================
+       COMBAT SYSTEM WITH 3-COMBO AP & FAST SWAPPING
+       ===================================================================== */
+    function spawnWild(minLevel = 2) {
+      const eligible = CREATURE_ROSTER.filter(c => c.stage <= 2);
+      const chosen = eligible[Math.floor(Math.random() * eligible.length)];
+      const plvl = getPlayerCreature() ? getPlayerCreature().level : 5;
+      const level = Math.max(minLevel, Math.floor(plvl + (Math.random() * 3 - 1)));
+
+      const forceBt = State.forceBadTrippSpawn || (State.godMode && Math.random() < 0.5);
+      State.wildCreature = createCreature(chosen.id, level, forceBt);
+
+      if (State.wildCreature.isBadTripp) {
+        SoundFx.badTrippScream();
+        showToast("☠️ WARNING: Corrupted Bad Tripp Variant Appeared!");
+      }
+    }
+
+    function renderBattle() {
+      const player = getPlayerCreature();
+      const wild = State.wildCreature;
+
+      // Player side
+      document.getElementById("playerName").textContent = player.name;
+      document.getElementById("playerLvl").textContent = `Lv. ${player.level}`;
+      document.getElementById("playerType").textContent = player.type;
+      document.getElementById("playerHpText").textContent = State.godMode ? `INVULNERABLE (${player.maxHp})` : `${Math.max(0, player.currentHp)} / ${player.maxHp}`;
+
+      const pAvatar = document.getElementById("playerAvatar");
+      pAvatar.innerHTML = getCreatureIcon(player.icon, true, player.isBadTripp);
+      pAvatar.className = `avatar-frame ${player.isBadTripp ? 'is-badtripp' : ''}`;
+
+      const pBadgeGroup = document.getElementById("playerBadgeGroup");
+      pBadgeGroup.innerHTML = `<span class="type-badge">${player.type}</span>`;
+      if (player.isBadTripp) {
+        pBadgeGroup.innerHTML += `<span class="badge-badtripp">BAD TRIPP ☠️</span>`;
+      }
+
+      const pPct = Math.max(0, (player.currentHp / player.maxHp) * 100);
+      const pHpBar = document.getElementById("playerHpBar");
+      pHpBar.style.width = `${pPct}%`;
+      pHpBar.className = `bar-fill ${pPct > 50 ? 'hp-green' : pPct > 20 ? 'hp-yellow' : 'hp-red'}`;
+
+      const pXp = Math.min(100, (player.xp / player.xpNext) * 100);
+      document.getElementById("playerXpBar").style.width = `${pXp}%`;
+
+      // AP Pips
+      const apContainer = document.getElementById("apPips");
+      apContainer.innerHTML = '';
+      for (let i = 0; i < State.playerApMax; i++) {
+        const d = document.createElement("div");
+        d.className = `ap-pip ${i < State.playerApCurrent ? 'active' : ''}`;
+        apContainer.appendChild(d);
+      }
+
+      // Wild entity side
+      document.getElementById("enemyName").textContent = `Wild ${wild.name}`;
+      document.getElementById("enemyLvl").textContent = `Lv. ${wild.level}`;
+      document.getElementById("enemyHpText").textContent = `${Math.max(0, wild.currentHp)} / ${wild.maxHp}`;
+
+      const wAvatar = document.getElementById("enemyAvatar");
+      wAvatar.innerHTML = getCreatureIcon(wild.icon, false, wild.isBadTripp);
+      wAvatar.className = `avatar-frame ${wild.isBadTripp ? 'is-badtripp' : ''}`;
+
+      const wBadgeGroup = document.getElementById("enemyBadgeGroup");
+      wBadgeGroup.innerHTML = `<span class="type-badge">${wild.type}</span>`;
+      if (wild.isBadTripp) {
+        wBadgeGroup.innerHTML += `<span class="badge-badtripp">BAD TRIPP ☠️</span>`;
+      }
+
+      const wPct = Math.max(0, (wild.currentHp / wild.maxHp) * 100);
+      const wHpBar = document.getElementById("enemyHpBar");
+      wHpBar.style.width = `${wPct}%`;
+      wHpBar.className = `bar-fill ${wPct > 50 ? 'hp-green' : wPct > 20 ? 'hp-yellow' : 'hp-red'}`;
+
+      // Move Buttons
+      const movesContainer = document.getElementById("movesContainer");
+      movesContainer.innerHTML = '';
+      player.moves.forEach(mKey => {
+        const move = MOVE_DEX[mKey];
+        if (!move) return;
+        const btn = document.createElement("button");
+        btn.className = "move-btn";
+        btn.disabled = State.isActing || (!State.godMode && State.playerApCurrent <= 0);
+
+        const isVoid = mKey === "creepypastaVoid";
+        btn.innerHTML = `
+          <div class="move-name" style="${isVoid ? 'color:var(--curse-red);' : ''}">${move.name}</div>
+          <div class="move-meta">
+            <span style="color:var(--neon-cyan);">${move.type}</span>
+            <span>PWR ${move.power || '--'}</span>
+          </div>
+        `;
+        btn.onclick = () => attackMove(mKey);
+        movesContainer.appendChild(btn);
+      });
+    }
+
+    function addLog(msg) {
+      const log = document.getElementById("battleLog");
+      const d = document.createElement("div");
+      d.innerHTML = msg;
+      log.prepend(d);
+      while (log.children.length > 20) log.removeChild(log.lastChild);
+    }
+
+    function attackMove(moveKey) {
+      if (State.isActing) return;
+
+      const player = getPlayerCreature();
+      const wild = State.wildCreature;
+      const move = MOVE_DEX[moveKey];
+
+      if (!State.godMode) {
+        State.playerApCurrent -= 1;
+      }
+
+      executeAttack(player, wild, move, () => {
+        if (wild.currentHp <= 0) {
+          onWildDefeated();
+        } else {
+          if (State.godMode || State.playerApCurrent > 0) {
+            addLog(`<span style="color:var(--neon-cyan); font-weight:900;">COMBO:</span> ${State.playerApCurrent} attack(s) left! Chain another move or tap End Turn.`);
+            renderBattle();
+          } else {
+            addLog(`AP exhausted! Wild ${wild.name} prepares to strike...`);
+            State.isActing = true;
+            renderBattle();
+            setTimeout(enemyTurn, 600);
+          }
+        }
+      });
+    }
+
+    function executeAttack(attacker, defender, move, callback) {
+      addLog(`<strong>${attacker.name}</strong> unleashed <strong>${move.name}</strong>!`);
+
+      const el = defender === State.wildCreature ? document.getElementById("enemyAvatar") : document.getElementById("playerAvatar");
+      el.classList.add("shake");
+      setTimeout(() => el.classList.remove("shake"), 380);
+
+      // GOD MODE
+      if (State.godMode && attacker === getPlayerCreature()) {
+        defender.currentHp = 0;
+        addLog(`<span style="color:var(--neon-magenta); font-weight:900;">⚡ EGO DEATH: 9,999 MIND MELT DAMAGE!</span>`);
+        SoundFx.crit();
+        renderBattle();
+        if (callback) callback();
+        return;
+      }
+
+      if (State.godMode && defender === getPlayerCreature()) {
+        addLog(`<span style="color:var(--neon-cyan);">⚡ EGO SHIELD: Absorbed all damage!</span>`);
+        SoundFx.hit();
+        renderBattle();
+        if (callback) callback();
+        return;
+      }
+
+      // Buffs & Heals
+      if (move.power === 0) {
+        if (move.effect === "heal") {
+          const heal = Math.round(attacker.maxHp * 0.35);
+          attacker.currentHp = Math.min(attacker.maxHp, attacker.currentHp + heal);
+          addLog(`<strong>${attacker.name}</strong> consumed brew and restored ${heal} HP!`);
+        } else if (move.effect === "buffAtk") {
+          attacker.atkStage += 1;
+          addLog(`<strong>${attacker.name}</strong> psychically accelerated (+ATK)!`);
+        } else if (move.effect === "buffDef") {
+          attacker.defStage += 1;
+          addLog(`<strong>${attacker.name}</strong> hardened crystal barrier (+DEF)!`);
+        } else if (move.effect === "buffSpd") {
+          attacker.spd += 4;
+          addLog(`<strong>${attacker.name}</strong> sped up time perception (+SPD)!`);
+        }
+        SoundFx.hit();
+        renderBattle();
+        if (callback) callback();
+        return;
+      }
+
+      // Damage Calculation
+      const mult = getMultiplier(move.type, defender.type);
+      let note = '';
+      if (mult > 1) {
+        note = ` <span style="color:var(--neon-cyan);">Super effective trip!</span>`;
+        SoundFx.crit();
+      } else {
+        SoundFx.hit();
+      }
+
+      const atkStat = attacker.atk * (1 + attacker.atkStage * 0.2);
+      const defStat = defender.def * (1 + defender.defStage * 0.2);
+      let dmg = Math.round((((2 * attacker.level / 5 + 2) * move.power * (atkStat / defStat)) / 50 + 2) * mult);
+
+      if (move.effect === "crit" && Math.random() < 0.35) {
+        dmg = Math.round(dmg * 1.5);
+        note += ` <span style="color:var(--neon-magenta);">PSYCHIC BREAKTHROUGH!</span>`;
+      }
+
+      defender.currentHp = Math.max(0, defender.currentHp - dmg);
+      addLog(`Inflicted ${dmg} damage!${note}`);
+
+      // Life Drain effect for Bad Tripp signature move
+      if (move.effect === "drain") {
+        const drainAmt = Math.round(dmg * 0.45);
+        attacker.currentHp = Math.min(attacker.maxHp, attacker.currentHp + drainAmt);
+        addLog(`<strong>${attacker.name}</strong> drained ${drainAmt} HP from the victim's soul!`);
+        SoundFx.badTrippScream();
+      }
+
+      if (move.effect === "bleed" && Math.random() < 0.4) {
+        defender.status = "bleed";
+        addLog(`<strong>${defender.name}</strong> fell into a bad thought loop!`);
+      } else if (move.effect === "flinch" && Math.random() < 0.3) {
+        defender.status = "flinch";
+      }
+
+      renderBattle();
+      if (callback) callback();
+    }
+
+    function enemyTurn() {
+      const wild = State.wildCreature;
+      const player = getPlayerCreature();
+
+      if (wild.currentHp <= 0) {
+        State.isActing = false;
+        resetAP();
+        return;
+      }
+
+      if (wild.status === "flinch") {
+        addLog(`<strong>${wild.name}</strong> was frozen in static!`);
+        wild.status = null;
+        State.isActing = false;
+        resetAP();
+        renderBattle();
+        return;
+      }
+
+      const moveKey = wild.moves[Math.floor(Math.random() * wild.moves.length)];
+      const move = MOVE_DEX[moveKey];
+
+      executeAttack(wild, player, move, () => {
+        resetAP();
+        State.isActing = false;
+
+        if (player.currentHp <= 0 && !State.godMode) {
+          addLog(`<strong>${player.name}</strong> dissolved into subconsciousness!`);
+          renderBattle();
+          checkTeamWipe();
+        } else {
+          renderBattle();
+        }
+      });
+    }
+
+    function resetAP() {
+      State.playerApCurrent = State.playerApMax;
+    }
+
+    document.getElementById("btnPass").addEventListener("click", () => {
+      if (State.isActing) return;
+      State.isActing = true;
+      addLog(`Ended turn. Wild entity retaliates!`);
+      setTimeout(enemyTurn, 400);
+    });
+
+    function onWildDefeated() {
+      const player = getPlayerCreature();
+      const wild = State.wildCreature;
+      const xp = wild.level * 28 + (wild.isBadTripp ? 40 : 16);
+      const spores = Math.floor(Math.random() * 18) + (wild.isBadTripp ? 35 : 14);
+
+      State.spores += spores;
+      updateHeader();
+      SoundFx.evolve();
+      resetAP();
+
+      addLog(`<strong>Wild ${wild.name} disintegrated!</strong> Gained +${xp} XP & +${spores} Spores.`);
+      player.xp += xp;
+
+      if (player.xp >= player.xpNext) {
+        levelUp(player);
+      }
+
+      renderBattle();
+      State.isActing = false;
+
+      setTimeout(() => {
+        spawnWild(player.level - 1);
+        addLog(`A new entity emerges from the hallucination.`);
+        resetAP();
+        renderBattle();
+      }, 1300);
+    }
+
+    function levelUp(creature) {
+      creature.level += 1;
+      creature.xp -= creature.xpNext;
+      creature.xpNext = creature.level * 36;
+
+      const hpUp = Math.floor(Math.random() * 6) + 8;
+      const atkUp = Math.floor(Math.random() * 3) + 3;
+      const defUp = Math.floor(Math.random() * 3) + 2;
+
+      creature.maxHp += hpUp;
+      creature.currentHp += hpUp;
+      creature.atk += atkUp;
+      creature.def += defUp;
+      creature.spd += 2;
+
+      addLog(`<span style="color:var(--neon-cyan); font-weight:900;">LEVEL UP!</span> ${creature.name} reached Lv. ${creature.level}!`);
+      showToast(`${creature.name} reached Lv. ${creature.level}!`);
+
+      const base = CREATURE_ROSTER.find(b => b.id === creature.speciesId);
+      base.moves.forEach(m => {
+        if (!creature.moves.includes(m)) {
+          creature.moves.push(m);
+          addLog(`Learned move: <strong>${MOVE_DEX[m].name}</strong>!`);
+        }
+      });
+
+      if (creature.evoLevel && creature.level >= creature.evoLevel && creature.evolvesTo) {
+        showEvolutionModal(creature);
+      }
+    }
+
+    /* =====================================================================
+       ASCENSION / EVOLUTION SYSTEM
+       ===================================================================== */
+    function showEvolutionModal(creature) {
+      const nextForm = CREATURE_ROSTER.find(c => c.id === creature.evolvesTo);
+      State.pendingEvolution = { creature, nextForm };
+
+      const isBt = creature.isBadTripp;
+      const evolvedTitle = isBt ? `Inverted ${nextForm.name}` : nextForm.name;
+
+      document.getElementById("evoTitle").textContent = `${creature.name.toUpperCase()} ASCENDS!`;
+      document.getElementById("evoDesc").innerHTML = `${creature.name} is ascending into <strong>${evolvedTitle}</strong> (Stage ${nextForm.stage})!`;
+      document.getElementById("evoAvatar").innerHTML = getCreatureIcon(nextForm.icon, true, isBt);
+      document.getElementById("evoModal").classList.add("active");
+    }
+
+    document.getElementById("btnConfirmEvo").addEventListener("click", () => {
+      if (!State.pendingEvolution) return;
+      const { creature, nextForm } = State.pendingEvolution;
+
+      creature.speciesId = nextForm.id;
+      creature.rawName = nextForm.name;
+      creature.name = creature.isBadTripp ? `Inverted ${nextForm.name}` : nextForm.name;
+      creature.type = nextForm.type;
+      creature.icon = nextForm.icon;
+      creature.stage = nextForm.stage;
+      creature.evoLevel = nextForm.evoLevel;
+      creature.evolvesTo = nextForm.evolvesTo;
+
+      creature.maxHp += 32;
+      creature.currentHp += 32;
+      creature.atk += 11;
+      creature.def += 8;
+      creature.spd += 6;
+
+      nextForm.moves.forEach(m => {
+        if (!creature.moves.includes(m)) creature.moves.push(m);
+      });
+
+      document.getElementById("evoModal").classList.remove("active");
+      SoundFx.evolve();
+      showToast(`Ascension Complete: ${creature.name}!`);
+      renderBattle();
+      renderDex();
+    });
+
+    /* =====================================================================
+       TRAP & CAPTURE
+       ===================================================================== */
+    document.getElementById("btnTrap").addEventListener("click", () => {
+      if (State.isActing) return;
+      if (!State.godMode && State.caps <= 0) {
+        showToast("Out of Stasis Caps! Harvest Spores.");
+        return;
+      }
+
+      State.isActing = true;
+      if (!State.godMode) State.caps -= 1;
+      updateHeader();
+
+      const wild = State.wildCreature;
+      const hpPct = wild.currentHp / wild.maxHp;
+      const catchRate = State.godMode ? 1.0 : Math.max(0.22, (1 - hpPct) * 0.88);
+
+      addLog(`Threw a Stasis Cap over <strong>${wild.name}</strong>...`);
+
+      setTimeout(() => {
+        if (Math.random() < catchRate) {
+          SoundFx.caught();
+          addLog(`<strong>TRAPPED!</strong> Wild ${wild.name} entered your mental pouch!`);
+          showToast(`Captured ${wild.name}!`);
+
+          if (State.party.length < 6) {
+            State.party.push(wild);
+          } else {
+            showToast("Pouch full! Sent to reserve.");
+          }
+
+          resetAP();
+          State.isActing = false;
+          spawnWild(getPlayerCreature().level);
+          renderBattle();
+          renderDex();
+        } else {
+          SoundFx.hit();
+          addLog(`The cap shattered! <strong>${wild.name}</strong> broke free!`);
+          setTimeout(enemyTurn, 400);
+        }
+      }, 650);
+    });
+
+    /* =====================================================================
+       GUARANTEED FLAWLESS SWAPPING SYSTEM
+       ===================================================================== */
+    function openSwapModal(forceChoose = false) {
+      const container = document.getElementById("swapChoices");
+      container.innerHTML = '';
+
+      State.party.forEach((c, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "btn";
+        btn.style.justifyContent = "space-between";
+        btn.style.textAlign = "left";
+        btn.disabled = c.currentHp <= 0 || idx === State.activeIdx;
+
+        btn.innerHTML = `
+          <div>
+            <strong style="color:${c.isBadTripp ? 'var(--curse-red)' : 'var(--neon-cyan)'}">${c.name}</strong>
+            <span style="font-size:0.65rem; color:var(--text-muted);">Lv. ${c.level}</span>
+          </div>
+          <span style="font-size:0.68rem; font-family:monospace;">${c.currentHp}/${c.maxHp} HP</span>
+        `;
+
+        btn.onclick = () => {
+          State.activeIdx = idx;
+          document.getElementById("swapModal").classList.remove("active");
+          addLog(`Summoned <strong>${c.name}</strong> to the frontline!`);
+          showToast(`Swapped to ${c.name}`);
+          resetAP();
+          renderBattle();
+
+          if (State.wildCreature.currentHp > 0) {
+            State.isActing = true;
+            setTimeout(enemyTurn, 450);
+          }
+        };
+        container.appendChild(btn);
+      });
+
+      document.getElementById("btnCloseSwap").style.display = forceChoose ? "none" : "block";
+      document.getElementById("swapModal").classList.add("active");
+    }
+
+    document.getElementById("btnSwapModal").addEventListener("click", () => {
+      if (State.isActing) return;
+      openSwapModal(false);
+    });
+
+    document.getElementById("btnCloseSwap").addEventListener("click", () => {
+      document.getElementById("swapModal").classList.remove("active");
+    });
+
+    document.getElementById("btnScout").addEventListener("click", () => {
+      if (State.isActing) return;
+      spawnWild(getPlayerCreature().level);
+      resetAP();
+      addLog(`Ventured deeper into the psychedelic wilderness!`);
+      renderBattle();
+    });
+
+    function checkTeamWipe() {
+      const anyAlive = State.party.some(c => c.currentHp > 0);
+      if (!anyAlive) {
+        addLog(`<span style="color:var(--curse-red);">All creatures collapsed! Retreating to Tea Detox...</span>`);
+        setTimeout(() => {
+          State.party.forEach(c => c.currentHp = c.maxHp);
+          resetAP();
+          State.isActing = false;
+          addLog(`Consciousness reassembled.`);
+          renderBattle();
+        }, 1200);
+      } else {
+        openSwapModal(true); // Force swap without closing
+      }
+    }
+
+    function renderTeam() {
+      const container = document.getElementById("teamList");
+      container.innerHTML = '';
+      State.party.forEach((c, idx) => {
+        const row = document.createElement("div");
+        row.className = "creature-row";
+        row.innerHTML = `
+          <div class="avatar-frame creature-thumb ${c.isBadTripp ? 'is-badtripp' : ''}">${getCreatureIcon(c.icon, true, c.isBadTripp)}</div>
+          <div style="flex:1;">
+            <div style="display:flex; justify-content:space-between;">
+              <strong style="color:${c.isBadTripp ? 'var(--curse-red)' : 'var(--neon-cyan)'}; font-size:0.82rem;">${c.name} ${idx === State.activeIdx ? '(Active)' : ''}</strong>
+              <span style="font-size:0.7rem; color:var(--text-muted);">Lv. ${c.level}</span>
+            </div>
+            <div style="font-size:0.68rem; margin:2px 0;">HP: ${c.currentHp}/${c.maxHp} • ATK: ${c.atk} • DEF: ${c.def} • SPD: ${c.spd}</div>
+            <div style="display:flex; gap:3px;">
+              <span class="type-badge">${c.type}</span>
+              ${c.isBadTripp ? '<span class="badge-badtripp">BAD TRIPP ☠️</span>' : ''}
+            </div>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    document.getElementById("btnDetox").addEventListener("click", () => {
+      State.party.forEach(c => {
+        c.currentHp = c.maxHp;
+        c.status = null;
+      });
+      SoundFx.evolve();
+      showToast("Pouch refreshed and restored!");
+      renderBattle();
+      renderTeam();
+    });
+
+    /* =====================================================================
+       GOD MODE (EGO DEATH)
+       ===================================================================== */
+    document.getElementById("godBtn").addEventListener("click", () => {
+      State.godMode = !State.godMode;
+      const btn = document.getElementById("godBtn");
+      if (State.godMode) {
+        btn.classList.add("active");
+        State.spores += 25000;
+        State.caps += 99;
+        State.playerApCurrent = 99;
+        const p = getPlayerCreature();
+        p.currentHp = p.maxHp;
+        SoundFx.evolve();
+        showToast("⚡ EGO DEATH ON: Infinite AP, 9999 KOs, Bad Tripp Spawns!");
+      } else {
+        btn.classList.remove("active");
+        resetAP();
+        showToast("Ego reconstituted.");
+      }
+      updateHeader();
+      renderBattle();
+    });
+
+    /* =====================================================================
+       ENCYCLOPEDIA: ALL 60 CREATURES & BAD TRIPP TOGGLE
+       ===================================================================== */
+    document.getElementById("btnToggleDexView").addEventListener("click", () => {
+      State.showBadTrippInDex = !State.showBadTrippInDex;
+      document.getElementById("btnToggleDexView").textContent = State.showBadTrippInDex ? "Show Normal Forms" : "Show Bad Tripp";
+      renderDex();
+    });
+
+    function renderDex() {
+      const container = document.getElementById("dexList");
+      container.innerHTML = '';
+
+      CREATURE_ROSTER.forEach(c => {
+        const isBtView = State.showBadTrippInDex;
+        const owned = State.party.some(p => p.speciesId === c.id && (!isBtView || p.isBadTripp));
+
+        const row = document.createElement("div");
+        row.className = "creature-row";
+        row.style.opacity = owned ? "1.0" : "0.75";
+
+        const evoText = c.evolvesTo 
+          ? `Ascends at Lv. ${c.evoLevel} ➜ ${CREATURE_ROSTER.find(x => x.id === c.evolvesTo).name}`
+          : "Nirvana Stage (Final Form)";
+
+        const namePrefix = isBtView ? "Inverted " : "";
+        const statMult = isBtView ? 1.35 : 1.0;
+
+        row.innerHTML = `
+          <div class="avatar-frame creature-thumb ${isBtView ? 'is-badtripp' : ''}">${getCreatureIcon(c.icon, owned, isBtView)}</div>
+          <div style="flex:1;">
+            <div style="display:flex; justify-content:space-between;">
+              <strong style="color:${isBtView ? 'var(--curse-red)' : 'var(--neon-cyan)'}; font-size:0.82rem;">#${c.id.toString().padStart(2, '0')} ${namePrefix}${c.name}</strong>
+              <div style="display:flex; gap:3px;">
+                <span class="type-badge">${c.type}</span>
+                ${isBtView ? '<span class="badge-badtripp">SHINY ☠️</span>' : ''}
+              </div>
+            </div>
+            <div style="font-size:0.66rem; color:var(--text-muted); margin: 2px 0;">${evoText}</div>
+            <div style="font-size:0.64rem; font-family:monospace; color:#a684d6;">
+              HP ${Math.round(c.hp * statMult)} | ATK ${Math.round(c.atk * statMult)} | DEF ${Math.round(c.def * statMult)} | SPD ${Math.round(c.spd * statMult)}
+            </div>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    /* =====================================================================
+       TRIP DEN (Passive Spores & Bosses)
+       ===================================================================== */
+    function renderDen() {
+      document.getElementById("denRankText").textContent = `Tier ${State.den.rank}`;
+      const totalIncome = State.den.baseIncome + State.den.trainers.reduce((s, t) => s + t.boost, 0);
+      document.getElementById("denIncomeText").textContent = `+${totalIncome}/sec`;
+      document.getElementById("denVaultText").textContent = State.den.vault;
+
+      const list = document.getElementById("denTrainersList");
+      list.innerHTML = '';
+      State.den.trainers.forEach((t, i) => {
+        const row = document.createElement("div");
+        row.className = "creature-row";
+        row.innerHTML = `
+          <div style="font-size:1.2rem;">🍄</div>
+          <div style="flex:1;">
+            <div style="display:flex; justify-content:space-between;">
+              <strong style="color:var(--neon-cyan); font-size:0.82rem;">${t.name} • ${t.title}</strong>
+              <span style="font-size:0.7rem; color:var(--text-muted);">Lv. ${t.level}</span>
+            </div>
+            <div style="font-size:0.66rem; color:var(--text-muted); margin-top:2px;">
+              Partner: <strong>${t.creature}</strong> • Stream: <span style="color:var(--neon-yellow);">+${t.boost}/sec</span>
+            </div>
+          </div>
+          <button class="btn btn-sm" onclick="trainShaman(${i})">Empower</button>
+        `;
+        list.appendChild(row);
+      });
+    }
+
+    window.trainShaman = function(index) {
+      if (State.spores >= 45) {
+        State.spores -= 45;
+        State.den.trainers[index].level += 2;
+        State.den.trainers[index].boost += 2;
+        updateHeader();
+        renderDen();
+        SoundFx.evolve();
+        showToast(`Empowered ${State.den.trainers[index].name}!`);
+      } else {
+        showToast("Need 45 Spores!");
+      }
+    };
+
+    document.getElementById("btnCollectVault").addEventListener("click", () => {
+      if (State.den.vault > 0) {
+        State.spores += State.den.vault;
+        showToast(`Harvested +${State.den.vault} Spores!`);
+        State.den.vault = 0;
+        updateHeader();
+        renderDen();
+        SoundFx.caught();
+      } else {
+        showToast("Den Vault is empty!");
+      }
+    });
+
+    document.getElementById("btnUpgradeDen").addEventListener("click", () => {
+      const cost = State.den.rank * 120;
+      if (State.spores >= cost) {
+        State.spores -= cost;
+        State.den.rank += 1;
+        State.den.baseIncome += 5;
+        updateHeader();
+        renderDen();
+        SoundFx.evolve();
+        showToast(`Den expanded to Tier ${State.den.rank}!`);
+      } else {
+        showToast(`Need ${cost} Spores!`);
+      }
+    });
+
+    document.getElementById("btnChallenger").addEventListener("click", () => {
+      const boss = createCreature(60, getPlayerCreature().level + 3, true); // Apex Inverted Boss
+      State.wildCreature = boss;
+      resetAP();
+      State.isActing = false;
+      addLog(`<span style="color:var(--curse-red); font-weight:900;">DEN CHALLENGE:</span> An Apex Inverted God invaded your Den! Defend your mind!`);
+      SoundFx.badTrippScream();
+      renderBattle();
+
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelector('[data-tab="viewBattle"]').classList.add("active");
+      document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+      document.getElementById("viewBattle").classList.add("active");
+    });
+
+    function updateHeader() {
+      document.getElementById("sporesCount").textContent = State.spores;
+      document.getElementById("capsCount").textContent = State.caps;
+    }
+
+    function setupTabs() {
+      const tabs = document.querySelectorAll(".tab-btn");
+      tabs.forEach(btn => {
+        btn.addEventListener("click", () => {
+          tabs.forEach(t => t.classList.remove("active"));
+          btn.classList.add("active");
+
+          const targetId = btn.getAttribute("data-tab");
+          document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+          document.getElementById(targetId).classList.add("active");
+
+          if (targetId === "viewTeam") renderTeam();
+          if (targetId === "viewDen") renderDen();
+          if (targetId === "viewDex") renderDex();
+        });
+      });
+    }
+
+    /* =====================================================================
+       INITIALIZATION
+       ===================================================================== */
+    window.addEventListener("DOMContentLoaded", () => {
+      // Starter: Tripmunk
+      State.party.push(createCreature(4, 5, false));
+      spawnWild(3);
+
+      updateHeader();
+      renderBattle();
+      renderDen();
+      renderDex();
+      setupTabs();
+
+      // Passive Den Income Loop
+      setInterval(() => {
+        const stream = State.den.baseIncome + State.den.trainers.reduce((s, t) => s + t.boost, 0);
+        State.den.vault += stream;
+        document.getElementById("denVaultText").textContent = State.den.vault;
+      }, 1500);
+
+      // iOS Safari double-tap prevention
+      let lastTouch = 0;
+      document.addEventListener('touchend', (e) => {
+        const now = Date.now();
+        if (now - lastTouch <= 300) e.preventDefault();
+        lastTouch = now;
+      }, false);
+    });
+  </script>
+</body>
+</html>
